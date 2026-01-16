@@ -1,0 +1,20 @@
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Secrets (never commit)
+.env
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Data outputs (avoid committing big/raw data)
+data/raw/
+data/processed/
