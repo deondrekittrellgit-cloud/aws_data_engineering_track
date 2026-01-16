@@ -18,3 +18,6 @@ venv/
 # Data outputs (avoid committing big/raw data)
 data/raw/
 data/processed/
+
+# Local virtual environment (created by Makefile)
+.venv/
