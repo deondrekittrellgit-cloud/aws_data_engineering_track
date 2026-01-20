@@ -24,3 +24,58 @@ make test
 
 ## Notes
 - Never commit `.env` (use `.env.example`)
+
+## Local Postgres (Docker + Colima)
+
+### Prereqs
+- Colima running (Docker context set to `colima`)
+- Docker Compose available
+
+Quick check:
+```bash
+docker context use colima
+docker info
+```
+
+### Start Postgres
+From the repo root:
+
+```bash
+docker compose up -d
+docker compose ps
+```
+
+
+### Connect with psql (from your Mac)
+Example (your port is **5433**):
+
+```bash
+export DE_DB_URL="postgresql://de_user:de_password@localhost:5433/de_db"
+psql -P pager=off "$DE_DB_URL" -c "SELECT version();"
+psql -P pager=off "$DE_DB_URL" -c "\dt"
+```
+
+### Reset the database (re-run init scripts)
+This wipes the Docker volume and re-runs `sql/postgres/*.sql`:
+
+```bash
+docker compose down -v
+docker compose up -d
+```
+
+
+### Troubleshooting
+If Docker commands fail, make sure Colima is running:
+
+```bash
+colima start --vm-type qemu --cpu 2 --memory 4 --disk 40
+docker context use colima
+docker info
+```
+
+If Postgres isn’t reachable from your Mac:
+
+```bash
+docker compose ps
+lsof -nP -iTCP:5433 -sTCP:LISTEN
+```
