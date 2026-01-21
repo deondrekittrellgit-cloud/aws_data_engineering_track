@@ -21,3 +21,4 @@ data/processed/
 
 # Local virtual environment (created by Makefile)
 .venv/
+*.egg-info/
