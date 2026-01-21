@@ -34,3 +34,10 @@ test:
 
 run-sample:
 	$(VENV)/bin/python -m de_track.pipelines.file_to_postgres --csv data/samples/sample_people.csv
+
+# --- Packaging / local dev ---
+install-editable:
+	. .venv/bin/activate && python -m pip install -e .
+
+run-week2-demo:
+	. .venv/bin/activate && python -m de_track.week_02.hello_pattern_a
